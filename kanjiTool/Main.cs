@@ -117,6 +117,22 @@ namespace kanziTool
                 int num = 0;
                 foreach (string line in array)
                 {
+                    if (line.Contains("正しくない可能性があります。他の辞書サイトもご確認ください"))
+                    {
+                        num++;
+                        break;
+                    }
+                }
+                string hiragana = (array[75 - 3+num].Replace("	", string.Empty).Replace("</p>", string.Empty).Replace("<p>", string.Empty).Replace(" ",string.Empty));
+                string lm= (array[76 - 3+num].Replace("	", string.Empty).Replace("</p>", string.Empty).Replace("<p>", string.Empty));
+                ret[0] = hiragana;
+                ret[1] = lm;
+                return ret;
+                /*
+                foreach (string line in array)
+                {
+
+                    MessageBox.Show(line);
                     if (num == 1)
                     {
                         string lm = line.Replace("	", "");
@@ -128,6 +144,7 @@ namespace kanziTool
                     if (flag)
                     {
                         string hiragana = line.Replace("	", "");
+                        MessageBox.Show("Debug: Hiragana="+line);
                         hiragana = hiragana.Replace("<p>", "");
                         hiragana = hiragana.Replace("</p>", "");
                         ret[0] = hiragana;
@@ -138,6 +155,8 @@ namespace kanziTool
                         flag = true;
                     }
                 }
+                因网站改版 以上代码失效
+                */
             }
             catch (Exception ex)
             {
